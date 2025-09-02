@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "NavMeshExport",
+	"Description": "",
+	"Category": "Other",
+	"CreatedBy": "joongom",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "NavMeshExport",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}

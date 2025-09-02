@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "ClientNet",
+	"Description": "Client Network Module",
+	"Category" : "Network",
+	"CreatedBy": "storm@clover.games",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+    {
+      "Name": "ClientNet",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+	]
+}

@@ -1,0 +1,25 @@
+{
+	"FileVersion" : 3,
+	"Version" : 1,
+	"VersionName" : "1.0",
+	"FriendlyName" : "ExtendText",
+	"Description" : "Allow to Extend Text",
+	"Category" : "ExtendText",
+	"CreatedBy" : "glsseact",
+	"CreatedByURL" : "glsseact.wordpress.com",
+	"DocsURL" : "",
+	"MarketplaceURL" : "",
+	"SupportURL" : "",
+	"CanContainContent" : false,
+	"IsBetaVersion" : false,
+	"Installed" : true,
+	"RequiresBuildPlatform" : false,
+	"Modules" :
+	[
+    {
+      "Name": "ExtendText",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+	]
+}

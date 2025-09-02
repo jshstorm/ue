@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "AnuLevelDesign",
+	"Description": "AnuLevelDesign",
+	"Category": "Other",
+	"CreatedBy": "noah",
+	"CreatedByURL": "noah@clover.games",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "AnuLevelDesign",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "AnuLevelDesignEditor",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "ClientNet",
+			"Enabled": true
+		}
+	]
+}
