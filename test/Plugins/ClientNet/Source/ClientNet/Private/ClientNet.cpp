@@ -2,13 +2,14 @@
 
 #include "ClientNet.h"
 
-#include "Runtime/Sockets/Public/Sockets.h"
-#include "Runtime/Sockets/Public/IPAddress.h"
-#include "Runtime/Sockets/Public/SocketSubsystem.h"
-#include "Runtime/Online/HTTP/Public/Http.h"
-#include "Runtime/Online/Websockets/Public/IWebSocket.h"
-#include "Runtime/Online/Websockets/Public/WebSocketsModule.h"
-#include "Runtime/Core/Public/Async/Async.h"
+#include "Sockets.h"
+#include "IPAddress.h"
+#include "SocketSubsystem.h"
+#include "Http.h"
+#include "IWebSocket.h"
+#include "WebSocketsModule.h"
+#include "Async/Async.h"
+#include "Dom/JsonObject.h"
 
 #include "framework_msg_define.h"
 #include "anu_msg_string.h"
@@ -415,7 +416,7 @@ TSharedPtr<FConnector> UClientNet::RestartClientNet(float delay, float timeout)
 
 TSharedPacket UClientNet::AllocPacket(uint16 msgID, int32 sessionID)
 {
-	TSharedPacket packet = MakeShared<FNetPacket>(msgID);
+	TSharedPacket packet = MakeShared<FNetPacket, ESPMode::NotThreadSafe>(msgID);
 	packet->SetSessionID(sessionID);
 	return packet;
 }
@@ -444,7 +445,7 @@ bool UClientNet::SendPacket(TSharedPacket& packet, bool framework)
 
 TSharedRef<IHttpRequest, ESPMode::ThreadSafe> UClientNet::AllocHTTP(EHTTPRequestVerb verb, EHTTPContentType contentType, float timeOut)
 {
-	_http->SetHttpTimeout(timeOut);
+	//_http->SetHttpTimeout(timeOut);
 
 	auto request = UClientNet::_http->CreateRequest();
 	switch (verb)
@@ -549,9 +550,11 @@ bool UClientNet::ProcessInternalNetEvent(int32 sessionID, TSharedWebSocketPacket
 void UClientNet::UpdateWebSocketAuthorization(int32 sessionID, TSharedWebSocketPacket& packet)
 {
 	const TSharedWebSocketPacket* response = nullptr;
-	if (packet->TryGetObjectField("response", response) == false) {
+	/*
+	if (packet->TryGetObjectField(TEXT("response"), response) == false) {
 		return;
 	}
+	*/
 
 	const FName cmd{ (*response)->GetStringField("cmd") };
 	if (cmd.IsEqual("auth") == false) {
@@ -566,7 +569,7 @@ void UClientNet::UpdateWebSocketAuthorization(int32 sessionID, TSharedWebSocketP
 	_authorizedWebSessions.Add(sessionID);
 	_webSocketCurrentID = sessionID;
 
-	TSharedWebSocketPacket internalEevent = MakeShared<FJsonObject>();
+	TSharedWebSocketPacket internalEevent = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 	internalEevent->SetStringField("event", "ActiveSession");
 	_receivedWebSocketQueue.Enqueue(internalEevent);
 
@@ -583,7 +586,7 @@ void UClientNet::WebSessionUnstabled(int32 sessionID)
 	if (_webSocketCurrentID == sessionID) {
 		_webSocketCurrentID = 0;
 
-		TSharedWebSocketPacket internalEevent = MakeShared<FJsonObject>();
+		TSharedWebSocketPacket internalEevent = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 		internalEevent->SetStringField("event", "DectiveSession");
 		_receivedWebSocketQueue.Enqueue(internalEevent);
 	}
@@ -715,11 +718,11 @@ void UClientNet::Request_AUTH_WEBSOCKET(int32 sessionID)
 		return;
 	}
 
-	TSharedWebSocketPacket command = MakeShared<FJsonObject>();
+	TSharedWebSocketPacket command = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 
-	TSharedWebSocketPacket auth = MakeShared<FJsonObject>();
+	TSharedWebSocketPacket auth = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 	auth->SetStringField("token",  _sessionToken);
-	command->SetObjectField("auth", auth);
+	//command->SetObjectField(TEXT("auth"), auth);
 
 	UE_LOG(LogClientNet, Verbose, TEXT("websocket request auth session:[%d]"), sessionID);
 	

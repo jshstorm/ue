@@ -22,7 +22,7 @@ void UWebSession::Create(const FString& address, const FString& protocol, TShare
 void UWebSession::OnConnected()
 {
 	UE_LOG(LogTemp, Log, TEXT("Connected to websocket server. sessionID:[%d]"), _sessionID);
-	TSharedWebSocketPacket json = MakeShared<FJsonObject>();
+	TSharedWebSocketPacket json = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 	json->SetBoolField("netevent", true);
 	_receivedQueue->ExecuteIfBound(_sessionID, json);
 }
@@ -30,7 +30,7 @@ void UWebSession::OnConnected()
 void UWebSession::OnNetworkError(const FString& error)
 {
 	UE_LOG(LogTemp, Log, TEXT("Failed to connect to websocket server with sessionID:[%d] error: \"%s\"."), _sessionID, *error);
-	TSharedWebSocketPacket json = MakeShared<FJsonObject>();
+	TSharedWebSocketPacket json = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 	json->SetBoolField("netevent", false);
 	_receivedQueue->ExecuteIfBound(_sessionID, json);
 }
@@ -42,14 +42,14 @@ void UWebSession::OnMessage(const FString& message)
 	TSharedPtr<FJsonObject> json;
 	auto reader = TJsonReaderFactory<TCHAR>::Create(message);
 	if (FJsonSerializer::Deserialize(reader, json)) {
-		_receivedQueue->ExecuteIfBound(_sessionID, json);
+		//_receivedQueue->ExecuteIfBound(_sessionID, json);
 	}
 }
 
 void UWebSession::OnClosed(int32 StatusCode, const FString& Reason, bool bWasClean)
 {
 	UE_LOG(LogTemp, Log, TEXT("Connection to websocket server has been closed with status sessionID:[%d] code: \"%d\" and reason: \"%s\"."), _sessionID, StatusCode, *Reason);
-	TSharedWebSocketPacket json = MakeShared<FJsonObject>();
+	TSharedWebSocketPacket json = MakeShared<FJsonObject, ESPMode::NotThreadSafe>();
 	json->SetBoolField("netevent", false);
 	_receivedQueue->ExecuteIfBound(_sessionID, json);
 }
@@ -62,10 +62,12 @@ void UWebSession::Send(const TSharedWebSocketPacket& packet)
 
 	FString JsonText;
 	TSharedRef<TJsonWriter<>> Writer = TJsonWriterFactory<>::Create(&JsonText);
+	/*
 	if (FJsonSerializer::Serialize(packet.ToSharedRef(), Writer) == false) {
 		UE_LOG(LogClientNet, Error, TEXT("failed to serialize json"));
 		return;
 	}
+	*/
 	_socket->Send(JsonText);
 }
 

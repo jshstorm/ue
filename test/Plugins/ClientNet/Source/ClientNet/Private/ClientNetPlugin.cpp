@@ -3,7 +3,7 @@
 #include "ClientNetPlugin.h"
 #include "Runtime/Online/Websockets/Public/WebSocketsModule.h"
 
-#define LOCTEXT_NAMESPACE "FClientNetworkModule"
+//#define LOCTEXT_NAMESPACE "FClientNetworkModule"
 
 void FClientNetModule::StartupModule()
 {
@@ -17,6 +17,6 @@ void FClientNetModule::ShutdownModule()
 	// we call this function before unloading the module.
 }
 
-#undef LOCTEXT_NAMESPACE
+//#undef LOCTEXT_NAMESPACE
 
 IMPLEMENT_MODULE(FClientNetModule, ClientNet)

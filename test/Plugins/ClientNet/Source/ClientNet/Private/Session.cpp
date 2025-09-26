@@ -129,7 +129,7 @@ bool FSession::Receiving()
 	{
 		int32 bytesRead = 0;
 		if (_buildingPacket.IsValid() == false) {
-			_buildingPacket = MakeShared<FNetPacket>();
+			_buildingPacket = MakeShared<FNetPacket, ESPMode::NotThreadSafe>();
 			_buildingPacket->SetSessionID(_sessionID);
 		}
 

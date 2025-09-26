@@ -433,5 +433,5 @@ public:
 	operator TEnum() { return (TEnum)(std::underlying_type_t<TEnum>) * this; }
 };
 
-using TSharedPacket = TSharedPtr<FNetPacket, ESPMode::Fast>;
-using TSharedWebSocketPacket = TSharedPtr<FJsonObject, ESPMode::Fast>;
+using TSharedPacket = TSharedPtr<FNetPacket, ESPMode::NotThreadSafe>;
+using TSharedWebSocketPacket = TSharedPtr<FJsonObject, ESPMode::NotThreadSafe>;

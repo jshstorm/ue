@@ -135,7 +135,7 @@ void UClientNet::OnFRAMEWORKMSG_SIGN_IN_ACK(TSharedPacket packet)
 
 			ScheduleSessionTokenRenewal();
 
-			UE_LOG(LogClientNet, Verbose, TEXT("sign in success signin token[%s] selected worldID[%u] created CharID[%lld]"), *_signinToken);
+			//UE_LOG(LogClientNet, Verbose, TEXT("sign in success signin token[%s] selected worldID[%u] created CharID[%lld]"), *_signinToken);
 
 			Request_WORLD_LIST();
 

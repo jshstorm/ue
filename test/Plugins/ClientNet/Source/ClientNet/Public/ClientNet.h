@@ -16,7 +16,6 @@
 
 #include "ClientNet.generated.h"
 
-class SOCKETS_API ISocketSubsystem;
 class FHttpModule;
 class IHttpRequest;
 

@@ -14,8 +14,9 @@ namespace UnrealBuildTool.Rules
 
         public ClientNet(ReadOnlyTargetRules Target) : base(Target)
         {
-            CppStandard = CppStandardVersion.Cpp17;
-            PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+			DefaultBuildSettings = BuildSettingsVersion.V5;
+			CppStandard = CppStandardVersion.Cpp20;
+			PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
             PublicIncludePaths.AddRange(
                 new string[] {
@@ -43,7 +44,7 @@ namespace UnrealBuildTool.Rules
                 "Engine",
                 "Networking",
                 "Sockets",
-                "Http",
+				"HTTP",
                 "Json",
                 "JsonUtilities",
                 "OpenSSL",
