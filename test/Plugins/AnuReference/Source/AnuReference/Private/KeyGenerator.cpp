@@ -83,14 +83,14 @@ void UCRC32::InitializeCrcLookupTable()
 //	}
 //}
 
-uint32 UCRC32::Generate32(const FName& uid)
+uint32 UCRC32::Generate32(const FName& uid) const
 {
-	const char* guid = TCHAR_TO_UTF8(*uid.ToString());
-	size_t length = ::strlen(guid);
-	return Generate32(guid, length);
+	const FString NameStr = uid.ToString();
+	FTCHARToUTF8 Utf8(*NameStr);
+	return Generate32(Utf8.Get(), static_cast<unsigned int>(Utf8.Length()));
 }
 
-uint32 UCRC32::Generate32(const char* data, unsigned int length)
+uint32 UCRC32::Generate32(const char* data, unsigned int length) const
 {
 	if (data == nullptr) {
 		return 0;

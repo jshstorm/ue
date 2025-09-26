@@ -19,7 +19,7 @@ public:
 	virtual void BeginDestroy() override;
 
 	void Initialize(uint32 seed = 0);
-	uint32 Generate32(const FName& uid);
+	uint32 Generate32(const FName& uid) const;
 	void Reset() { _table = 0; }
 	static UCRC32* GetPtr();
 	
@@ -33,7 +33,7 @@ public:
 	static bool crcInitialized;
 
 private:
-	uint32 Generate32(const char* data, unsigned int length);
+	uint32 Generate32(const char* data, unsigned int length) const;
 	
 	static UCRC32* _instance;
 	void InitializeCrcLookupTable();
