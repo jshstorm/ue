@@ -9,6 +9,7 @@ public class testTarget : TargetRules
 	{
 		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
+		CppStandard = CppStandardVersion.Cpp20;
 
 		ExtraModuleNames.AddRange( new string[] { "test" } );
 	}

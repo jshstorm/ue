@@ -1643,14 +1643,14 @@ namespace PermissionUtil
 
 	static const std::string& GetPermissionString(PermissionType type)
 	{
-		static const std::string NAME_None = "None";
+		static const std::string __NAME_None = "None";
 
 		for (auto& it : PermissionTypes) {
 			if (it.second == type) {
 				return it.first;
 			}
 		}
-		return NAME_None;
+		return __NAME_None;
 	}
 };
 // [end] permission

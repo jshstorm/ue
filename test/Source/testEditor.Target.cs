@@ -9,6 +9,7 @@ public class testEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
+		CppStandard = CppStandardVersion.Cpp20;
 
 		ExtraModuleNames.AddRange( new string[] { "test" } );
 	}

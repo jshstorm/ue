@@ -3,15 +3,10 @@
 #include "AnuReferencePlugin.h"
 #include "KeyGenerator.h"
 
-#if WITH_EDITOR
-#include "UnrealEd/Public/FileHelpers.h"
-#endif
-
 #include "AnuReferenceStyle.h"
 #include "Reference.h"
 #include "ReferenceBuilder.h"
 #include "LogAnuReference.h"
-
 
 #define LOCTEXT_NAMESPACE "FAnuReferenceModule"
 
@@ -45,32 +40,7 @@ void FAnuReferenceModule::ShutdownModule()
 
 void FAnuReferenceModule::Export()
 {
-#if WITH_EDITOR
-	UWorld* world = GEditor->GetEditorWorldContext().World();
 
-	TArray<AActor*> allActors;
-	UGameplayStatics::GetAllActorsOfClass(world, AActor::StaticClass(), allActors);
-	TArray<AActor*> lookupTargets;
-	TArray<ARefInteractor*> spawnInteractor;
-	for (auto actor : allActors) {
-		if (auto spawner = Cast<ARefInteractor>(actor)) {
-			spawnInteractor.Emplace(spawner);
-			lookupTargets.Emplace(actor);
-			continue;
-		}
-
-		auto lookups = actor->GetComponentsByInterface(UWorldLookupTarget::StaticClass());
-		if (lookups.Num() != 0) {
-			lookupTargets.Emplace(actor);
-			continue;
-		}
-	}
-
-	UReferenceBuilder::ExportWorldLookupTarget(world, lookupTargets);
-	if (UReferenceBuilder::ExportSpawner(spawnInteractor)) {
-		FEditorFileUtils::SaveCurrentLevel();
-	}
-#endif //WITH_EDITOR
 }
 
 void FAnuReferenceModule::AddToolbarExtension(FToolBarBuilder& Builder)

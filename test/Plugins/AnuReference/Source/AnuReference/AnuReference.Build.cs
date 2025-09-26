@@ -9,9 +9,8 @@ namespace UnrealBuildTool.Rules
     {
         public AnuReference(ReadOnlyTargetRules Target) : base(Target)
         {
-            CppStandard = CppStandardVersion.Cpp17;
-            PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-            bEnableUndefinedIdentifierWarnings = false;
+			DefaultBuildSettings = BuildSettingsVersion.V5;
+			PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
             string workspaceDirectory = Path.Combine(ModuleDirectory, "../../../../../");
             PrivateIncludePaths.Add(Path.Combine(workspaceDirectory, "server/source/include"));
@@ -22,7 +21,6 @@ namespace UnrealBuildTool.Rules
                 "Core",
                 "XmlParser",
                 "Json",
-				"AnuLevelDesign",
 				"AIModule",
                 }
             );
