@@ -18,7 +18,6 @@
 #include "NavMesh/NavMeshBoundsVolume.h"
 #include "HAL/PlatformString.h"
 #include "../../../../server/source/include/AnuNavmeshFile.h"
-#include "../Navmesh/Public/Detour/DetourNavMesh.h"
 #include "HAL/PlatformFilemanager.h"
 
 static const FName NavMeshExportTabName("NavMeshExport");
