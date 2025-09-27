@@ -1,0 +1,101 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/Source/**",
+                "${workspaceFolder}/Plugins/**/Source/**",
+                "${workspaceFolder}/_Plugins/**/Source/**",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/**",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Plugins/**/Source/**",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/CoreUObject/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/Engine/Classes",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Editor/UnrealEd/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/SlateCore/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/Slate/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/InputCore/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/ApplicationCore/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/RHI/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/RenderCore/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/Json/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/OnlineSubsystem/Public",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Intermediate/Build/Mac/UnrealEditor/Inc/test/UHT",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Intermediate/Build/Mac/UnrealEditor/Inc/Core/UHT",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Intermediate/Build/Mac/UnrealEditor/Inc/CoreUObject/UHT",
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Intermediate/Build/Mac/UnrealEditor/Inc/Engine/UHT"
+            ],
+            "defines": [
+                "UE_BUILD_DEVELOPMENT=1",
+                "UE_BUILD_DEVELOPMENT_WITH_DEBUGGAME=0",
+                "UE_BUILD_MINIMAL=0",
+                "UE_BUILD_SHIPPING=0",
+                "UE_BUILD_TEST=0",
+                "UE_BUILD_DEBUG=0",
+                "UE_GAME=1",
+                "UE_EDITOR=1",
+                "WITH_DEV_AUTOMATION_TESTS=1",
+                "WITH_PERF_AUTOMATION_TESTS=1",
+                "UNICODE=1",
+                "_UNICODE=1",
+                "PLATFORM_MAC=1",
+                "PLATFORM_APPLE=1",
+                "PLATFORM_UNIX=1",
+                "WITH_EDITOR=1",
+                "WITH_ENGINE=1",
+                "WITH_UNREAL_DEVELOPER_TOOLS=1",
+                "WITH_PLUGIN_SUPPORT=0",
+                "IS_MONOLITHIC=0",
+                "WITH_UNREAL_TARGET_DEVELOPER_TOOLS=1",
+                "UBT_COMPILED_PLATFORM=Mac",
+                "UE_APP_NAME=\"test\"",
+                "NDEBUG=1",
+                "UE_BUILD_MINIMAL=0",
+                "UE_ENGINE_DIRECTORY=\"/Users/Shared/Epic Games/UE_5.6/Engine/\"",
+                "IMPLEMENT_ENCRYPTION_KEY_REGISTRATION()=",
+                "IMPLEMENT_SIGNING_KEY_REGISTRATION()=",
+                "WITH_AUTOMATION_TESTS=1",
+                "WITH_PERFCOUNTERS=1",
+                "USE_LOGGING_IN_SHIPPING=0",
+                "WITH_LOGGING_TO_MEMORY=0",
+                "USE_CACHE_FREED_OS_ALLOCS=1",
+                "USE_CHECKS_IN_SHIPPING=0",
+                "WITH_EDITOR=1",
+                "WITH_SERVER_CODE=1",
+                "WITH_CEF3=1",
+                "UE_ENABLE_ICU=1",
+                "WITH_DIRECTXMATH=0",
+                "CORE_API=DLLIMPORT",
+                "COREUOBJECT_API=DLLIMPORT",
+                "ENGINE_API=DLLIMPORT"
+            ],
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "compilerPath": "/usr/bin/clang++",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-x64",
+            "compilerArgs": [
+                "-fno-rtti",
+                "-std=c++17"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/Source",
+                    "${workspaceFolder}/Plugins",
+                    "${workspaceFolder}/_Plugins",
+                    "/Users/Shared/Epic Games/UE_5.6/Engine/Source"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceFolder}/.vscode/browse.vc.db"
+            },
+            "forcedInclude": [
+                "/Users/Shared/Epic Games/UE_5.6/Engine/Source/Runtime/Core/Public/HAL/Platform.h"
+            ]
+        }
+    ],
+    "version": 4
+}

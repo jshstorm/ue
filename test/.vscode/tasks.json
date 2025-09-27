@@ -1,0 +1,238 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Generate Project Files",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Binaries/DotNET/UnrealBuildTool/UnrealBuildTool",
+            "args": [
+                "-projectfiles",
+                "-project=\"${workspaceFolder}/test.uproject\"",
+                "-game",
+                "-rocket",
+                "-progress"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build test (Development Editor)",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Build/BatchFiles/Mac/Build.sh",
+            "args": [
+                "testEditor",
+                "Mac",
+                "Development",
+                "\"${workspaceFolder}/test.uproject\"",
+                "-waitmutex"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [
+                {
+                    "owner": "cpp",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": {
+                        "regexp": "^(.*)\\((\\d+)\\):\\s+(warning|error):\\s+(.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "severity": 3,
+                        "message": 4
+                    }
+                }
+            ]
+        },
+        {
+            "label": "Build test (Development)",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Build/BatchFiles/Mac/Build.sh",
+            "args": [
+                "test",
+                "Mac",
+                "Development",
+                "\"${workspaceFolder}/test.uproject\"",
+                "-waitmutex"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [
+                {
+                    "owner": "cpp",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": {
+                        "regexp": "^(.*)\\((\\d+)\\):\\s+(warning|error):\\s+(.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "severity": 3,
+                        "message": 4
+                    }
+                }
+            ]
+        },
+        {
+            "label": "Build test (Shipping)",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Build/BatchFiles/Mac/Build.sh",
+            "args": [
+                "test",
+                "Mac",
+                "Shipping",
+                "\"${workspaceFolder}/test.uproject\"",
+                "-waitmutex"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [
+                {
+                    "owner": "cpp",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceFolder}"
+                    ],
+                    "pattern": {
+                        "regexp": "^(.*)\\((\\d+)\\):\\s+(warning|error):\\s+(.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "severity": 3,
+                        "message": 4
+                    }
+                }
+            ]
+        },
+        {
+            "label": "Clean Project",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Build/BatchFiles/Mac/Build.sh",
+            "args": [
+                "testEditor",
+                "Mac",
+                "Development",
+                "\"${workspaceFolder}/test.uproject\"",
+                "-clean"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Rebuild Project",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Build/BatchFiles/Mac/Build.sh",
+            "args": [
+                "testEditor",
+                "Mac",
+                "Development",
+                "\"${workspaceFolder}/test.uproject\"",
+                "-clean"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Clean Project",
+                "Build test (Development Editor)"
+            ]
+        },
+        {
+            "label": "Cook Content",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Binaries/Mac/UnrealEditor-Cmd.app/Contents/MacOS/UnrealEditor-Cmd",
+            "args": [
+                "\"${workspaceFolder}/test.uproject\"",
+                "-run=cook",
+                "-targetplatform=Mac"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Package Project (Development)",
+            "type": "shell",
+            "command": "/Users/Shared/Epic Games/UE_5.6/Engine/Build/BatchFiles/RunUAT.sh",
+            "args": [
+                "BuildCookRun",
+                "-project=\"${workspaceFolder}/test.uproject\"",
+                "-noP4",
+                "-platform=Mac",
+                "-configuration=Development",
+                "-cook",
+                "-build",
+                "-stage",
+                "-pak",
+                "-archive",
+                "-archivedirectory=\"${workspaceFolder}/Packaged\""
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}
