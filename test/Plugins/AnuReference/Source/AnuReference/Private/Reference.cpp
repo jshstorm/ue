@@ -173,3 +173,12 @@ FString URefBase::GetEnumValueString(const FName& enumMemberName, int64 value, b
 	}
 	return valueStr.RightChop(lastNamespaceDelimeter + 1); // + 1 -> ":"
 }
+
+////////////////////////////////////////////////////////////////////////////////////
+URefGlobal* URefGlobal::StaticParse(const FXmlNode* node)
+{
+	URefGlobal* reference = NewObject<URefGlobal>();
+	reference->Key = node->GetAttribute("Key");
+	reference->Value = node->GetAttribute("Value");
+	return reference;
+}

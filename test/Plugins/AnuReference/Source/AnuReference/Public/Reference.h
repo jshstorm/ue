@@ -51,3 +51,17 @@ class ANUREFERENCE_API URefResourceCore : public URefResourceBase
 {
 	GENERATED_BODY()
 };
+
+UCLASS(BlueprintType)
+class ANUREFERENCE_API URefGlobal : public URefBase
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY()
+		FString Key;
+	UPROPERTY()
+		FString Value;
+
+	virtual void Parse(const FXmlNode* node) override { }
+	static URefGlobal* StaticParse(const FXmlNode* node);
+};

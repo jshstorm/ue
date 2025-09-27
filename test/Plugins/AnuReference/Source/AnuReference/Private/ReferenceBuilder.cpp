@@ -34,6 +34,11 @@ namespace ReferenceBuilder::Details
 	}
 }
 
+#define REGISTER_REF_HANDLERS(tableName, klass)  { \
+	_refHandlers.Add(MakeTuple(tableName, FReferenceHandler::CreateUObject(this, &UReferenceBuilder::klass##Handler))); \
+	_references.Add(klass::StaticClass(), NewObject<UReferences>(this));\
+}
+
 FString UReferenceBuilder::GetJsonSrcDirectory()
 {
 	return FPaths::ProjectContentDir() + "Anu/JsonSrc/";
@@ -57,6 +62,10 @@ bool UReferenceBuilder::Initialize()
 	_references.Add(klass::StaticClass(), NewObject<UReferences>(this)); \
 	_postProcessors.Emplace([this]() { UReferenceBuilder::klass##PostProcessor(); }); \
 }
+
+	InitializeDataTable();
+
+	REGISTER_REF_HANDLERS("Global", URefGlobal);
 
 	if (LoadFiles() == false) {
 		return false;
@@ -130,44 +139,6 @@ void UReferenceBuilder::GetJsonFilePaths(const FString& tableName, TArray<FStrin
 bool UReferenceBuilder::LoadFiles()
 {
 	UE_LOG(LogReference, Verbose, TEXT("UReferenceBuilder::LoadFiles"));
-
-	// json references
-#if WITH_EDITOR
-	// create json index object
-	TSharedPtr<FJsonObject> jsonIndex = MakeShareable(new FJsonObject);
-	check(jsonIndex);
-#endif
-	for (auto& val : _refJsonHandlers) {
-		const FString tableName{ val.Key };
-		FJsonReferenceHandler* handler = &val.Value;
-		UE_LOG(LogReference, Verbose, TEXT("loading json directory.. [%s]"), *tableName);
-
-		TArray<FString> paths;
-		GetJsonFilePaths(tableName, paths);
-
-		TArray<TSharedPtr<FJsonValue>> pathValues;
-		for (const auto& path : paths) {
-			const FString fileName{ FPaths::GetBaseFilename(path) };
-			auto json = LoadJsonFile(path);
-			if (json == nullptr) {
-				//checkRefMsgfCont(Error, false, TEXT("[%s] json src file[%s] format is invalid; open file and check by text editor"), *tableName, *path);
-				continue;
-			}
-			handler->Execute(fileName, json.Get());
-
-#if WITH_EDITOR
-			const FString JsonReferencePath{ GetJsonSrcDirectory() };
-			const FString tablePath{ JsonReferencePath + tableName };
-
-			pathValues.Add(MakeShareable(new FJsonValueString(path.RightChop(tablePath.Len() + 1))));
-#endif
-		}
-
-#if WITH_EDITOR
-		jsonIndex->SetArrayField(tableName, pathValues);
-#endif
-	}
-
 	// xml references
 	for (auto& val : _refHandlers) {
 		FReferenceHandler* handler = &val.Value;
@@ -184,14 +155,6 @@ bool UReferenceBuilder::LoadFiles()
 		UE_LOG(LogReference, Verbose, TEXT("loading completed."));
 	}
 
-#if WITH_EDITOR
-	FString jsonIndexStr;
-	TSharedRef<TJsonWriter<>> jsonWriter = TJsonWriterFactory<>::Create(&jsonIndexStr);
-	bool jsonIndexSerialized = FJsonSerializer::Serialize(jsonIndex.ToSharedRef(), jsonWriter);
-	check(jsonIndexSerialized);
-	bool jsonIndexSaved = FFileHelper::SaveStringToFile(jsonIndexStr, *GetJsonIndexPath());
-	check(jsonIndexSaved);
-#endif
 	return true;
 }
 
