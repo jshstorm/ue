@@ -251,4 +251,6 @@ public:
 
 		reference->QueryReference<T>(fieldName, value, querier);
 	}
+private:
+	void URefGlobalHandler(const FXmlNode* root);
 };
