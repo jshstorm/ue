@@ -118,7 +118,7 @@ void URefBase::ParseArrayProperty(const FArrayProperty* arrProp, const TArray<FS
 				((TArray<float>*)memberProp)->Add(numValue);
 			}
 			else if (arrNumProb->IsInteger()) {
-				if (arrNumProb->ElementSize == sizeof(int64)) {
+				if (arrNumProb->GetElementSize() == sizeof(int64)) {
 					int64 numValue = FCString::Atoi64(*arrValue);
 					((TArray<int64>*)memberProp)->Add(numValue);
 				}

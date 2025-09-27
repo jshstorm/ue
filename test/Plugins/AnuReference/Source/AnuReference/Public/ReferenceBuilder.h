@@ -48,6 +48,64 @@ public:
 	{
 		return &_references;
 	}
+	template<class T>
+	FProperty* FindProperty(const FString& fieldName)
+	{
+		for (TFieldIterator<FProperty> it(T::StaticClass()); it; ++it) {
+			FProperty* property = *it;
+			if (property->GetName().Equals(fieldName)) {
+				return property;
+			}
+		}
+		return nullptr;
+	}
+
+	template<class T>
+	void QueryReference(const FString& fieldName, const FString& value, TFunction<void(T*)>& querier)
+	{
+		if (FProperty* property = FindProperty<T>(fieldName)) {
+			for (auto& refData : _references) {
+				URefBase* ref = refData.Value;
+				void* memberProp = property->ContainerPtrToValuePtr<void>(ref);
+				FString* refValue = (FString*)memberProp;
+				if (refValue->Equals(value) == true)
+				{
+					querier((T*)ref);
+				}
+			}
+		}
+	}
+
+	template<class T>
+	void QueryReference(const FString& fieldName, const FName& value, TFunction<void(T*)>& querier)
+	{
+		if (FProperty* property = FindProperty<T>(fieldName)) {
+			for (auto& refData : _references) {
+				URefBase* ref = refData.Value;
+				void* memberProp = property->ContainerPtrToValuePtr<void>(ref);
+				FName* refValue = (FName*)memberProp;
+				if (*refValue == value)	{
+					querier((T*)ref);
+				}
+			}
+		}
+	}
+
+	template<class T>
+	void QueryReference(const FString& fieldName, int32 value, TFunction<void(T*)>& querier)
+	{
+		if (FProperty* property = FindProperty<T>(fieldName)) {
+			for (auto& refData : _references) {
+				URefBase* ref = refData.Value;
+				void* memberProp = property->ContainerPtrToValuePtr<void>(ref);
+				int32* refValue = (int32*)memberProp;
+				if (*refValue == value)
+				{
+					querier((T*)ref);
+				}
+			}
+		}
+	}
 };
 
 UCLASS()
@@ -131,4 +189,66 @@ private:
 	TSharedPtr<class FXmlFile> LoadTableFile(const FString& name);
 
 	void IterateNodes(const FXmlNode* root, TFunction<void(const FXmlNode*)> handler);
+
+public:
+	template<class T>
+	UReferences* GetReferences()
+	{
+		return _references.FindRef(T::StaticClass());
+	}
+
+	template<class T>
+	T* GetRefObj(int32 idx)
+	{
+		UReferences* reference = _references.FindRef(T::StaticClass());
+		if (reference == nullptr) {
+			return nullptr;
+		}
+
+		return Cast<T>(reference->GetReference(idx));
+	}
+
+	template<class T>
+	T* GetRefObj(const FString& uid)
+	{
+		UReferences* reference = _references.FindRef(T::StaticClass());
+		if (reference == nullptr) {
+			return nullptr;
+		}
+
+		return Cast<T>(reference->GetReference(uid));
+	}
+
+	template<class T>
+	T* GetRefObj(const FName& uid)
+	{
+		UReferences* reference = _references.FindRef(T::StaticClass());
+		if (reference == nullptr) {
+			return nullptr;
+		}
+
+		return Cast<T>(reference->GetReference(uid));
+	}
+
+	template<class T>
+	void QueryReference(const FString& fieldName, const FString& value, TFunction<void(T*)> querier)
+	{
+		UReferences* reference = _references.FindRef(T::StaticClass());
+		if (reference == nullptr) {
+			return;
+		}
+
+		reference->QueryReference<T>(fieldName, value, querier);
+	}
+
+	template<class T>
+	void QueryReference(const FString& fieldName, int32 value, TFunction<void(T*)> querier)
+	{
+		UReferences* reference = _references.FindRef(T::StaticClass());
+		if (reference == nullptr) {
+			return;
+		}
+
+		reference->QueryReference<T>(fieldName, value, querier);
+	}
 };
