@@ -13,6 +13,16 @@
                 "-progress"
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Binaries\\DotNET\\UnrealBuildTool\\UnrealBuildTool.exe",
+                "args": [
+                    "-projectfiles",
+                    "-project=\"${workspaceFolder}\\test.uproject\"",
+                    "-game",
+                    "-rocket",
+                    "-progress"
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -37,6 +47,16 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
+            },
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Build\\BatchFiles\\Build.bat",
+                "args": [
+                    "testEditor",
+                    "Win64",
+                    "Development",
+                    "\"${workspaceFolder}\\test.uproject\"",
+                    "-waitmutex"
+                ]
             },
             "presentation": {
                 "echo": true,
@@ -75,6 +95,16 @@
                 "-waitmutex"
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Build\\BatchFiles\\Build.bat",
+                "args": [
+                    "test",
+                    "Win64",
+                    "Development",
+                    "\"${workspaceFolder}\\test.uproject\"",
+                    "-waitmutex"
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -112,6 +142,16 @@
                 "-waitmutex"
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Build\\BatchFiles\\Build.bat",
+                "args": [
+                    "test",
+                    "Win64",
+                    "Shipping",
+                    "\"${workspaceFolder}\\test.uproject\"",
+                    "-waitmutex"
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -149,6 +189,16 @@
                 "-clean"
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Build\\BatchFiles\\Build.bat",
+                "args": [
+                    "testEditor",
+                    "Win64",
+                    "Development",
+                    "\"${workspaceFolder}\\test.uproject\"",
+                    "-clean"
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -171,6 +221,16 @@
                 "-clean"
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Build\\BatchFiles\\Build.bat",
+                "args": [
+                    "testEditor",
+                    "Win64",
+                    "Development",
+                    "\"${workspaceFolder}\\test.uproject\"",
+                    "-clean"
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -196,6 +256,14 @@
                 "-targetplatform=Mac"
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Binaries\\Win64\\UnrealEditor-Cmd.exe",
+                "args": [
+                    "\"${workspaceFolder}\\test.uproject\"",
+                    "-run=cook",
+                    "-targetplatform=Windows"
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -224,6 +292,22 @@
                 "-archivedirectory=\"${workspaceFolder}/Packaged\""
             ],
             "group": "build",
+            "windows": {
+                "command": "${env:UE_PATH}\\Engine\\Build\\BatchFiles\\RunUAT.bat",
+                "args": [
+                    "BuildCookRun",
+                    "-project=\"${workspaceFolder}\\test.uproject\"",
+                    "-noP4",
+                    "-platform=Win64",
+                    "-configuration=Development",
+                    "-cook",
+                    "-build",
+                    "-stage",
+                    "-pak",
+                    "-archive",
+                    "-archivedirectory=\"${workspaceFolder}\\Packaged\""
+                ]
+            },
             "presentation": {
                 "echo": true,
                 "reveal": "always",

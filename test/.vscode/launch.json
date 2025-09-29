@@ -30,6 +30,21 @@
             }
         },
         {
+            "name": "Launch UE5 Editor (Debug) [Windows]",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${env:UE_PATH}\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+            "args": [
+                "${workspaceFolder}\\test.uproject",
+                "-debug"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "Build test (Development Editor)"
+        },
+        {
             "name": "Launch UE5 Editor",
             "type": "cppdbg",
             "request": "launch",
@@ -42,6 +57,20 @@
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",
+            "preLaunchTask": "Build test (Development Editor)"
+        },
+        {
+            "name": "Launch UE5 Editor [Windows]",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${env:UE_PATH}\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+            "args": [
+                "${workspaceFolder}\\test.uproject"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
             "preLaunchTask": "Build test (Development Editor)"
         },
         {
@@ -70,6 +99,18 @@
             }
         },
         {
+            "name": "Launch Game (Debug) [Windows]",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\Binaries\\Win64\\test.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "Build test (Development)"
+        },
+        {
             "name": "Attach to UE5 Editor",
             "type": "cppdbg",
             "request": "attach",
@@ -83,6 +124,13 @@
                     "ignoreFailures": true
                 }
             ]
+        }
+        {
+            "name": "Attach to UE5 Editor [Windows]",
+            "type": "cppvsdbg",
+            "request": "attach",
+            "program": "${env:UE_PATH}\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
+            "processId": "${command:pickProcess}"
         }
     ]
 }
