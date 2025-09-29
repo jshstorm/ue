@@ -533,11 +533,11 @@ bool UClientNet::OpenWebSocket(const FString& address, const FString& protocol)
 
 bool UClientNet::ProcessInternalNetEvent(int32 sessionID, TSharedWebSocketPacket& packet)
 {
-	if (packet->HasField("netevent") == false) {
+	if (packet->HasField(TEXT("netevent")) == false) {
 		return false;
 	}
 
-	auto on = packet->GetBoolField("netevent");
+	auto on = packet->GetBoolField(TEXT("netevent"));
 	if (on) {
 		Request_AUTH_WEBSOCKET(sessionID);
 	}
@@ -556,12 +556,16 @@ void UClientNet::UpdateWebSocketAuthorization(int32 sessionID, TSharedWebSocketP
 	}
 	*/
 
-	const FName cmd{ (*response)->GetStringField("cmd") };
-	if (cmd.IsEqual("auth") == false) {
+	if (response == nullptr || response->IsValid() == false) {
 		return;
 	}
 
-	int32 result = (*response)->GetNumberField("resultCode");
+	const FName cmd{ (*response)->GetStringField(TEXT("cmd")) };
+	if (cmd.IsEqual(TEXT("auth")) == false) {
+		return;
+	}
+
+	int32 result = (*response)->GetNumberField(TEXT("resultCode"));
 	if (result != 1) {
 		return;
 	}
