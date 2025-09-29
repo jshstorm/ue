@@ -1,21 +1,14 @@
 #include "ReferenceBuilder.h"
-#include "Runtime/Core/Public/Misc/Paths.h"
-#include "Misc/DefaultValueHelper.h"
-#include "Misc/FileHelper.h"
-#include "Kismet/KismetStringTableLibrary.h"
-#include "Kismet/KismetSystemLibrary.h"
-#include "Camera/CameraActor.h"
-#include "Engine/AssetManager.h"
-#include "Serialization/JsonSerializer.h"
-#include "GameFramework/Character.h"
-#include "Particles/ParticleSystem.h"
 
-#include "BehaviorTree/BehaviorTree.h"
-#include "Sound/SoundWave.h"
-
-#include "Internationalization/StringTableRegistry.h"
-#include "Internationalization/StringTableCore.h"
-#include "Internationalization/StringTable.h"
+// Minimal, focused includes for used APIs
+#include "CoreMinimal.h"                 // UE_LOG, FString, TArray, TMap, MakeShared
+#include "Misc/Paths.h"                  // FPaths
+#include "Misc/FileHelper.h"             // FFileHelper
+#include "HAL/FileManager.h"             // IFileManager
+#include "HAL/PlatformTime.h"            // FPlatformTime
+#include "XmlParser.h"                   // FXmlFile, FXmlNode
+#include "Dom/JsonObject.h"              // FJsonObject
+#include "Serialization/JsonSerializer.h"// FJsonSerializer, TJsonReaderFactory
 
 #include "Reference.h"
 

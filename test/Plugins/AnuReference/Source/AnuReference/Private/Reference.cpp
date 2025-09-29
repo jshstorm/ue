@@ -1,23 +1,8 @@
 #include "Reference.h"
+#include "UObject/Class.h"          // TFieldIterator
+#include "UObject/UObjectGlobals.h" // LoadObject
 
-#include "UObject/TextProperty.h"
-#include "Engine/Texture2D.h"
-#include "Engine.h"
-#include "Kismet/KismetStringLibrary.h"
-#include "LogAnuReference.h"
-#include "Internationalization/Text.h"
-#include "AssetRegistry/IAssetRegistry.h"
-#include "Sound/SoundWave.h"
-#include "ReferenceBuilder.h"
-
-#include "Internationalization/StringTableCore.h"
-
-#if WITH_EDITOR
-#include "DrawDebugHelpers.h"
-#endif
-
-const static FString Delimiter{ "|" };
-const static int32 totalTagCount = 8;
+// Removed unused Delimiter and totalTagCount constants to keep translation unit minimal
 
 ////////////////////////////////////////////////////////////////////////////////////
 void URefBase::Parse(const FXmlNode* node)
