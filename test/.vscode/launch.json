@@ -124,12 +124,11 @@
                     "ignoreFailures": true
                 }
             ]
-        }
+        },
         {
             "name": "Attach to UE5 Editor [Windows]",
             "type": "cppvsdbg",
             "request": "attach",
-            "program": "${env:UE_PATH}\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
             "processId": "${command:pickProcess}"
         }
     ]
