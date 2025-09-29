@@ -134,7 +134,7 @@ bool FNavMeshExportModule::Export(const TCHAR* filepath) const
 	ANSICHAR aName[1024];
 		config.Name.GetPlainANSIString(aName);
 	// Use Strncpy per deprecation notice; zero-fills remaining buffer
-	FPlatformString::Strncpy(info->agentName_, 32, aName, 32);
+	FPlatformString::Strncpy(info->agentName_, aName, 32);
 		info->extend_[0] = config.GetExtent().X;
 		info->extend_[1] = config.GetExtent().Y;
 		info->extend_[2] = config.GetExtent().Z;
