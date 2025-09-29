@@ -1,0 +1,51 @@
+# Unreal Engine - repository root .gitignore
+# Covers all subfolders (e.g., test/)
+
+# Build artifacts
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+
+# Packaged builds
+Packaged/
+*.pak
+*.ucas
+*.utoc
+
+# IDE and user-specific
+.vs/
+.vscode/
+.idea/
+*.sln
+*.suo
+*.user
+*.userosscache
+*.VC.db
+*.VC.opendb
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Generated code
+*.generated.h
+*.gen.cpp
+*.generated.*
+
+# Shader/compute caches
+ShaderCache/
+*.ushadercache
+
+# Plugin build outputs
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# Node/venv (if any)
+node_modules/
+.venv/
+venv/
+
+# Backups/Autosaves
+*_Backup*/
+*Autosave*/

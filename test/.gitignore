@@ -1,0 +1,91 @@
+# Unreal Engine standard ignores
+# Reference: https://github.com/github/gitignore/blob/main/UnrealEngine.gitignore
+
+# Build artifacts
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+
+# Packaged builds and archives
+Packaged/
+*.pak
+*.ucas
+*.utoc
+*.uprojectdirs
+
+# Build system / UBT
+*.sln
+*.suo
+*.xcodeproj
+*.xcworkspace
+*.opensdf
+*.sdf
+*.sln.cache
+*.VC.db
+*.VC.opendb
+.vs/
+
+# User/IDE settings
+*.user
+*.userprefs
+*.userosscache
+*.sublime-project
+*.sublime-workspace
+*.log
+*.tlog
+*.orig
+*.tmp
+*.DS_Store
+Thumbs.db
+
+# Unreal specific user files
+*.opensdf
+*.sdf
+*.cache
+DerivedDataCache/*
+
+# Auto-generated code
+*.generated.h
+*.generated.cpp
+*.gen.cpp
+*.generated.*
+
+# Shader/compute cache
+ShaderCache/
+*.ushadercache
+
+# Crash/Profiler
+*.dmp
+*.psess
+*.vspx
+*.nvuser
+*.ncv
+*.ncu-rep
+
+# Plugin/Engine build outputs
+Plugins/**/Binaries/
+Plugins/**/Intermediate/
+
+# Local settings
+*.local
+*.localsettings
+
+# Node/other tooling (if present)
+node_modules/
+
+# JetBrains Rider/IDEA
+.idea/
+*.iml
+
+# Backup/Autosaves
+*_Backup*/
+*Autosave*/
+
+# Python virtual envs (if used)
+.venv/
+venv/
+
+# Mac metadata
+.AppleDouble
+.LSOverride
